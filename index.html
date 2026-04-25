@@ -993,7 +993,8 @@ select.finput:hover{transform:translateY(-1px)}
 const RACE_COLORS={
   "Humanian":"#2a7ab8","Dwarken":"#7a5230","Scallion":"#2a7d32",
   "Falenian":"#1560c0","Hadroan":"#4a2080","Tusker":"#a05510",
-  "Smiloborn":"#9a2840","Glimmer":"#008a8f","Lilliput":"#528b2f","Elvian":"#7b1fa2"
+  "Smiloborn":"#9a2840","Glimmer":"#008a8f","Lilliput":"#528b2f",
+  "Elvian":"#7b1fa2","Dalefolk":"#c47c20"
 };
 
 const RACE_PORTRAITS = {
@@ -1006,7 +1007,8 @@ const RACE_PORTRAITS = {
   "Lilliput":  "lilliputs.jpg",
   "Humanian":  "humanian.jpg",
   "Elvian":  "elvians.jpg",
-  "Smiloborn":  "smiloborns.jpg"
+  "Smiloborn":  "smiloborns.jpg",
+  "Dalefolk":  "dalefolk.jpg"
 };
 
 function applyRaceColor(n){
@@ -1032,8 +1034,7 @@ const RACES={
       "(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},
       "Jovarite":{asi:{},label:"Jovarite",
         traits:[
-          "Steady Body: Advantage on checks and saves to resist being knocked prone or forcibly moved",
-          "Heavy Presence: Disadvantage on Stealth checks in natural terrain"
+          "Steady Body: Advantage on checks and saves to resist being knocked prone or forcibly moved"
         ]},
       "Venarine":{asi:{},label:"Venarine",
         traits:["Toxin Resilience: Resistance to poison damage and advantage on saves against the poisoned condition"]}
@@ -1054,7 +1055,8 @@ const RACES={
   "Scallion":{asi:{dex:2,wis:1},speed:30,size:"Medium",
     traits:[
       "Stalker's Gait: You ignore movement penalties from nonmagical plant-based terrain",
-      "Patient Strike: You have advantage on Initiative rolls."
+      "Patient Strike: You have advantage on Initiative rolls.",
+      "Cold-Blooded: You have disadvantage on Strength and Dexterity ability checks while in cold or freezing environments."
     ],
     langs:"Common, Scallion",
     subraces:{
@@ -1067,8 +1069,7 @@ const RACES={
     traits:[
       "Deep Lungs: You can hold your breath for up to 1 hour",
       "Aquatic Blindsight: You have blindsight out to 15 ft while underwater",
-      "Crushing Grip: Advantage on Athletics checks made to grapple while underwater",
-      "Powerful Build: You count as one size larger for carrying capacity, grappling, and shoving"
+      "Crushing Grip: Advantage on Athletics checks made to grapple while underwater"
     ],
     langs:"Common, Falenia",
     subraces:{
@@ -1120,13 +1121,12 @@ const RACES={
     traits:[
       "Seismic Sense: You have tremorsense out to 30 ft while in physical contact with a surface. Within this range, you detect presence and approximate location of creatures also on that surface. You do not perceive sight or appearance — only vibrations such as movement, position, and relative mass. You are blind beyond this range unless using normal senses.",
       "Resonant Perception: When you detect a creature using Seismic Sense, use a bonus action to make a Wisdom (Perception) check. DC 12+: learn its size and general shape. DC 17+: identify it precisely.",
-      "Sound Dependent: While deafened, Seismic Sense range drops to 0.",
-      "Structural Awareness: Proficiency in the Investigation skill"
+      "Sound Dependent: While deafened, Seismic Sense range drops to 0."
     ],
-    skills:["Investigation"],langs:"Common, Glimmer",
+    langs:"Common, Glimmer",
     subraces:{
       "(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},
-      "Canopy-Clipper":{asi:{dex:1},label:"Canopy-Clipper (+1 DEX) · Climbing",traits:["Climber: You gain a climbing speed equal to your walking speed. Seismic Sense functions on vertical surfaces you touch."]},
+      "Canopy-Glimmers":{asi:{dex:1},label:"Canopy-Glimmers (+1 DEX) · Quick Reflex",traits:["Quick Reflex: You have advantage on Dexterity saving throws."]},
       "Void-Glimmer":{asi:{wis:1},label:"Void-Glimmer (+1 WIS) · Resonant Memory",traits:["Resonant Memory: When you touch an object or surface, you can sense the last significant vibration it recorded. Once per short rest."]}
     }},
 
@@ -1145,14 +1145,25 @@ const RACES={
   "Elvian":{asi:{int:2,wis:1},speed:30,darkvision:60,size:"Medium",
     traits:[
       "Darkvision: 60 ft",
-      "Chronicle Mind: Proficiency in History. Double proficiency bonus on History checks recalling information you personally witnessed or studied.",
-      "Arcane Discipline: Advantage on saving throws against being charmed or magically confused",
+      "Chronicle Mind: Proficiency in History. Double proficiency bonus on History checks recalling information you personally witnessed or studied."
     ],
     skills:["History"],langs:"Common, Elvish + 1 of your choice",
     subraces:{
       "(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},
       "Rune Elf":{asi:{int:1},label:"Rune Elf (+1 INT) · Arcana",traits:["Arcane Notation: Proficiency in Arcana. You have advantage on Arcana checks made to identify spells, magical effects, runes, or enchanted objects."],skills:["Arcana"]},
       "Warden Elf":{asi:{wis:1},label:"Warden Elf (+1 WIS) · Reroll",traits:["Living Archive: Once per long rest, when you fail a History, Arcana, or Investigation check, reroll and take the new result."]}
+    }},
+
+  "Dalefolk":{asi:{cha:2,wis:1},speed:25,size:"Small",
+    traits:[
+      "Lucky Escape: When you roll a 1 on a d20 for an attack roll, ability check, or saving throw, you can reroll the die. You must use the new roll.",
+      "Nimble: You can move through the space of any creature that is of a size larger than yours."
+    ],
+    langs:"Common, Burrow",
+    subraces:{
+      "(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},
+      "Hearthbound":{asi:{wis:1},label:"Hearthbound (+1 WIS)",traits:["Home Comfort: When you finish a short rest in a sheltered or comfortable location, you regain an additional 1d6 hit points."]},
+      "Wanderfoot":{asi:{cha:1},label:"Wanderfoot (+1 CHA)",traits:["Brave: You have advantage on saving throws against being frightened."]}
     }}
 };
 
