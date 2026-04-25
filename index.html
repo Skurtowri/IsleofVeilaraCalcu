@@ -1018,23 +1018,31 @@ function applyRaceColor(n){
 }
 
 // ══════════════════════════════════════════════════════════
-//  GAME DATA
+//  GAME DATA  ← UPDATED FROM NEW DOCUMENT
 // ══════════════════════════════════════════════════════════
 const RACES={
   "Humanian":{
     asi:{str:1,dex:1,con:1,int:1,wis:1,cha:1},speed:30,size:"Medium",
-    traits:["Ability Scores: +1 to every ability score"],
-    langs:"Common + 2 of choice",
+    traits:[
+      "Ability Scores: +1 to every ability score",
+      "Cosmic Adaptability: You gain proficiency in one skill of your choice"
+    ],
+    langs:"Common + 1 of choice",
     subraces:{
       "(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},
       "Jovarite":{asi:{},label:"Jovarite",
-        traits:["Steady Body: Advantage on saving throws to resist being knocked prone","Heavy Presence: Disadvantage on Dexterity (Stealth) checks in natural terrain"]},
+        traits:[
+          "Steady Body: Advantage on checks and saves to resist being knocked prone or forcibly moved",
+          "Heavy Presence: Disadvantage on Stealth checks in natural terrain"
+        ]},
       "Venarine":{asi:{},label:"Venarine",
-        traits:["Toxin Resilience: Resistance to poison damage + advantage on saves vs being poisoned"]}
+        traits:["Toxin Resilience: Resistance to poison damage and advantage on saves against the poisoned condition"]}
     }},
+
   "Dwarken":{asi:{con:2,str:1},speed:25,size:"Medium",nat_armor:true,
     traits:[
       "Natural Armor: AC = 12 + Dexterity modifier while not wearing armor",
+      "Enduring Build: Once per long rest, when you fail a Constitution saving throw, you can reroll it. You must use the new result.",
       "Heavy Frame: Difficult terrain costs an additional 5 ft of movement"
     ],
     langs:"Common, Dwarken",
@@ -1043,22 +1051,25 @@ const RACES={
       "Frost Dwarkens":{asi:{con:1},label:"Frost Dwarkens (+1 CON)",traits:["Cold Resistance: Resistance to cold damage"]},
       "Magwarns":{asi:{str:1},label:"Magwarns (+1 STR)",traits:["Fire Resistance: Resistance to fire damage"]}
     }},
+
   "Scallion":{asi:{dex:2,wis:1},speed:30,size:"Medium",
     traits:[
-      "Stalker's Gait: You ignore movement penalties caused by plant-based terrain",
-      "Patient Strike: You have advantage on Initiative rolls"
+      "Stalker's Gait: You ignore movement penalties from nonmagical plant-based terrain",
+      "Patient Strike: You have advantage on Initiative rolls. On the first round of combat, your attack may deal an extra 1d4 damage if you act before your target."
     ],
     langs:"Common, Scallion",
     subraces:{
       "(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},
-      "Raptoids":{asi:{dex:1},label:"Raptoids (+1 DEX) · +5 ft speed",traits:["Swift Pursuit: Your speed increases by 5 ft"],speed_bonus:5},
+      "Raptoids":{asi:{dex:1},label:"Raptoids (+1 DEX) · +5 ft speed",traits:["Swift Pursuit: Your walking speed increases by 5 ft"],speed_bonus:5},
       "Ceraknights":{asi:{str:1},label:"Ceraknights (+1 STR) · +1 AC",traits:["Plated Hide: +1 bonus to AC"],ac_bonus:1}
     }},
+
   "Falenian":{asi:{str:2,con:1},speed:25,swim:40,size:"Medium",
     traits:[
       "Deep Lungs: You can hold your breath for up to 1 hour",
-      "Echolocation: 10 ft blindsight while underwater only",
-      "Crushing Grip: Proficiency in Athletics checks while underwater"
+      "Aquatic Blindsight: You have blindsight out to 15 ft while underwater",
+      "Crushing Grip: Advantage on Athletics checks made to grapple while underwater",
+      "Powerful Build: You count as one size larger for carrying capacity, grappling, and shoving"
     ],
     langs:"Common, Falenia",
     subraces:{
@@ -1066,75 +1077,84 @@ const RACES={
       "Currenters":{asi:{con:1},label:"Currenters (+1 CON)",traits:["Bog Adaptation: Ignore difficult terrain from mud, swamp, or shallow water"]},
       "Abyssians":{asi:{str:1},label:"Abyssians (+1 STR)",traits:["Cold Resistance: Resistance to cold damage"]}
     }},
+
   "Hadroan":{asi:{wis:2,dex:1},speed:30,darkvision:120,size:"Medium",
     traits:[
-      "Darkvision: 120 ft",
-      "Silent Stride: Proficiency in the Stealth skill",
-      "Sunlight Sensitivity: Disadvantage on Wisdom (Perception) checks relying on sight in bright sunlight"
+      "Superior Darkvision: You can see in darkness out to 120 ft",
+      "Silent Stride: Proficiency in Stealth. If already proficient, you gain expertise instead.",
+      "Sunlight Sensitivity: Disadvantage on Perception checks relying on sight in bright light"
     ],
     skills:["Stealth"],langs:"Common, Hadroan",
     subraces:{
       "(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},
-      "Marsh-Hadroans":{asi:{dex:1},label:"Marsh-Hadroans (+1 DEX)",traits:["Mask of the Wild: You can attempt to hide even when only lightly obscured"]},
-      "Peak-Hadroans":{asi:{wis:1},label:"Peak-Hadroans (+1 WIS)",traits:["Keen Sight: Advantage on Perception checks in dim light or darkness"]}
+      "Marsh-Hadroans":{asi:{dex:1},label:"Marsh-Hadroans (+1 DEX)",traits:["Mask of the Wild: You can hide when only lightly obscured by natural phenomena"]},
+      "Peak-Hadroans":{asi:{wis:1},label:"Peak-Hadroans (+1 WIS)",traits:["Keen Sight: Advantage on Perception checks relying on sight in dim light or darkness"]}
     }},
+
   "Tusker":{asi:{str:2,con:1},speed:25,ac_bonus:1,size:"Medium",
     traits:[
-      "Thick Hide: +1 bonus to AC (only while not wearing heavy armor)",
-      "Mass Authority: Count as one size larger for carrying capacity, grappling, pushing, and dragging",
-      "Heavy Build: Disadvantage on Dexterity (Stealth) checks"
+      "Thick Hide: +1 bonus to AC while not wearing heavy armor",
+      "Mass Authority: You count as one size larger for carrying capacity, grappling, and shoving",
+      "Tectonic Charge: If you move at least 10 ft straight toward a creature and hit it with a melee attack, you can push it up to 5 ft away. Once per turn.",
+      "Heavy Build: Disadvantage on Stealth checks"
     ],
     langs:"Common, Tusker",
     subraces:{
       "(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},
-      "Loxodons":{asi:{str:1},label:"Loxodons (+1 STR)",traits:["Open Stride: Ignore difficult terrain when moving in a straight line"]},
+      "Loxodons":{asi:{str:1},label:"Loxodons (+1 STR)",traits:["Open Stride: Difficult terrain doesn't slow you when moving in a straight line"]},
       "Mammuthus":{asi:{con:1},label:"Mammuthus (+1 CON)",traits:["Glacial Blood: Resistance to cold damage"]}
     }},
+
   "Smiloborn":{asi:{str:2,con:1},speed:30,size:"Medium",
     traits:[
-      "Natural Weapons: Your fangs deal 1d4 + Strength modifier piercing damage",
+      "Natural Weapons: Your fangs deal 1d4 + Strength modifier piercing damage. You are proficient with them.",
       "Tenacity: When reduced to 0 HP but not killed outright, drop to 1 HP instead (once per long rest)"
     ],
     langs:"Common, Smiloborn",
     subraces:{
       "(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},
-      "Primal-Fang":{asi:{str:1},label:"Primal-Fang (+1 STR)",traits:["Scent Tracker: Advantage on Wisdom (Survival) checks to track creatures"]},
-      "Code-Fang":{asi:{con:1},label:"Code-Fang (+1 CON)",traits:["Protective Presence: When an ally within 5 ft is hit, use your reaction to impose disadvantage on that attack roll. Attacker rerolls, must use new result. Once per short rest."]}
+      "Primal-Fang":{asi:{str:1},label:"Primal-Fang (+1 STR)",traits:["Scent Tracker: Advantage on Survival checks to track creatures. You can track by scent even without a visible trail."]},
+      "Code-Fang":{asi:{con:1},label:"Code-Fang (+1 CON)",traits:["Protective Presence: When an ally within 5 ft is hit by an attack, as a reaction you can force the attacker to reroll and take the lower result. Once per short rest."]}
     }},
+
   "Glimmer":{asi:{int:2,con:1},speed:30,size:"Medium",
     traits:[
-      "Seismic Sense: You have Blindsight with a range of 40 ft.  Beyond this, you rely on your normal senses. Blindsight lets you perceive something within range. It does not penetrate total cover.",
+      "Seismic Sense: You have tremorsense out to 30 ft while in physical contact with a surface. Within this range, you detect presence and approximate location of creatures also on that surface. You do not perceive sight or appearance — only vibrations such as movement, position, and relative mass. You are blind beyond this range unless using normal senses.",
+      "Resonant Perception: When you detect a creature using Seismic Sense, use a bonus action to make a Wisdom (Perception) check. DC 12+: learn its size and general shape. DC 17+: identify it precisely.",
+      "Sound Dependent: While deafened, Seismic Sense range drops to 0.",
       "Structural Awareness: Proficiency in the Investigation skill"
     ],
     skills:["Investigation"],langs:"Common, Glimmer",
     subraces:{
       "(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},
-      "Canopy-Clipper":{asi:{dex:1},label:"Canopy-Clipper (+1 DEX) · Climbing",traits:["Climber: You gain a climbing speed equal to your walking speed"]},
-      "Void-Glimmer":{asi:{wis:1},label:"Void-Glimmer (+1 WIS) · Tremorsense",traits:["Tremor Sense: You gain tremorsense out to 10 ft — detect movement through surfaces you touch"]}
+      "Canopy-Clipper":{asi:{dex:1},label:"Canopy-Clipper (+1 DEX) · Climbing",traits:["Climber: You gain a climbing speed equal to your walking speed. Seismic Sense functions on vertical surfaces you touch."]},
+      "Void-Glimmer":{asi:{wis:1},label:"Void-Glimmer (+1 WIS) · Resonant Memory",traits:["Resonant Memory: When you touch an object or surface, you can sense the last significant vibration it recorded. Once per short rest."]}
     }},
+
   "Lilliput":{asi:{dex:2,wis:1},speed:25,size:"Small",
     traits:[
-      "Slip Through: Once per turn, impose disadvantage on one opportunity attack made against you",
+      "Slip Through: You can move through the space of any creature larger than you. Opportunity attacks against you are made with disadvantage.",
       "People Sense: Proficiency in the Insight skill"
     ],
     skills:["Insight"],langs:"Common, Lilliput",
     subraces:{
       "(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},
-      "Meadoputs":{asi:{dex:1},label:"Meadoputs (+1 DEX)",traits:["Chain Leap: Once per turn, after landing from a jump you may make one additional jump using remaining movement normally"]},
-      "Hearthputs":{asi:{cha:1},label:"Hearthputs (+1 CHA) · +Persuasion",traits:["Emotional Read: Proficiency in the Persuasion skill"],skills:["Persuasion"]}
+      "Meadoputs":{asi:{dex:1},label:"Meadoputs (+1 DEX)",traits:["Chain Leap: After landing from a jump, you may immediately make one additional jump using your remaining movement."]},
+      "Hearthputs":{asi:{cha:1},label:"Hearthputs (+1 CHA) · +Persuasion",traits:["Warmth of Presence: Proficiency in the Persuasion skill"],skills:["Persuasion"]}
     }},
+
   "Elvian":{asi:{int:2,wis:1},speed:30,darkvision:60,size:"Medium",
     traits:[
       "Darkvision: 60 ft",
-      "Chronicle Mind: Proficiency in the History skill",
-      "Arcane Discipline: Advantage on saving throws against being charmed",
+      "Chronicle Mind: Proficiency in History. Double proficiency bonus on History checks recalling information you personally witnessed or studied.",
+      "Arcane Discipline: Advantage on saving throws against being charmed or magically confused",
       "Frail Form: Disadvantage on Strength saving throws"
     ],
     skills:["History"],langs:"Common, Elvish + 1 of your choice",
     subraces:{
       "(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},
-      "Rune Elf":{asi:{int:1},label:"Rune Elf (+1 INT) · Identify",traits:["Arcane Notation: Cast Identify once per long rest without a spell slot or material components (INT is spellcasting ability)"]},
-      "Warden Elf":{asi:{wis:1},label:"Warden Elf (+1 WIS) · Reroll",traits:["Living Archive: Once per long rest, when you fail a History, Intelligence, or Arcana check, reroll and take the new result"]}
+      "Rune Elf":{asi:{int:1},label:"Rune Elf (+1 INT) · Arcana",traits:["Arcane Notation: Proficiency in Arcana. You have advantage on Arcana checks made to identify spells, magical effects, runes, or enchanted objects."],skills:["Arcana"]},
+      "Warden Elf":{asi:{wis:1},label:"Warden Elf (+1 WIS) · Reroll",traits:["Living Archive: Once per long rest, when you fail a History, Arcana, or Investigation check, reroll and take the new result."]}
     }}
 };
 
