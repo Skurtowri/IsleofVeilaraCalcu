@@ -1045,38 +1045,281 @@ const RACES = {
 // ══════════════════════════════════════════════════════════
 //  CLASSES
 // ══════════════════════════════════════════════════════════
-const CLASSES={
-  "Fighter":{hd:10,saves:["str","con"],pick:2,label:"Fighter — d10 · STR or DEX · Saves: STR, CON",skills:["Athletics","Acrobatics","Animal Handling","History","Insight","Intimidation","Perception","Survival"],features:["Fighting Style: Choose one — +1 to attack rolls, +1 AC, or +2 melee damage","Second Wind: Regain 1d10 + your level in HP as a bonus action (1/short or long rest)"]},
-  "Barbarian":{hd:12,saves:["str","con"],pick:2,label:"Barbarian — d12 · STR · Saves: STR, CON",skills:["Animal Handling","Athletics","Intimidation","Nature","Perception","Survival"],features:["Rage: Bonus action — enter Rage (2 uses/long rest). Resistance to bludgeoning, piercing, slashing damage + bonus STR melee damage."]},
-  "Rogue":{hd:8,saves:["dex","int"],pick:4,label:"Rogue — d8 · DEX · Saves: DEX, INT",skills:["Acrobatics","Athletics","Deception","Insight","Intimidation","Investigation","Perception","Performance","Persuasion","Sleight of Hand","Stealth"],features:["Sneak Attack: Once per turn — extra 1d6 damage when you have advantage or an ally is within 5 ft of target","Cunning Action: Bonus action — Dash, Disengage, or Hide"]},
-  "Monk":{hd:8,saves:["str","dex"],pick:2,label:"Monk — d8 · DEX & WIS · Saves: STR, DEX",skills:["Acrobatics","Athletics","History","Insight","Religion","Stealth"],features:["Martial Arts: After the Attack action, make one unarmed strike as a bonus action"]},
-  "Ranger":{hd:10,saves:["dex","wis"],pick:3,label:"Ranger — d10 · DEX & WIS · Saves: DEX, WIS",skills:["Animal Handling","Athletics","Insight","Investigation","Nature","Perception","Stealth","Survival"],features:["Natural Explorer: Advantage on tracking and survival checks in natural environments"],spell:{ab:"wis",type:"Half",start:2}},
-  "Paladin":{hd:10,saves:["wis","cha"],pick:2,label:"Paladin — d10 · STR & CHA · Saves: WIS, CHA",skills:["Athletics","Insight","Intimidation","Medicine","Persuasion","Religion"],features:["Lay on Hands: Touch a creature to restore HP from a pool of 5 × your level (action)"],spell:{ab:"cha",type:"Half",start:2}},
-  "Cleric":{hd:8,saves:["wis","cha"],pick:2,label:"Cleric — d8 · WIS · Saves: WIS, CHA",skills:["History","Insight","Medicine","Persuasion","Religion"],features:[],spell:{ab:"wis",type:"Full",start:1,cantrips:3}},
-  "Druid":{hd:8,saves:["wis","dex"],pick:2,label:"Druid — d8 · WIS · Saves: WIS, DEX",skills:["Arcana","Animal Handling","Insight","Medicine","Nature","Perception","Survival"],features:[],spell:{ab:"wis",type:"Full",start:1,cantrips:2}},
-  "Wizard":{hd:6,saves:["int","wis"],pick:2,label:"Wizard — d6 · INT · Saves: INT, WIS",skills:["Arcana","History","Insight","Investigation","Medicine","Religion"],features:[],spell:{ab:"int",type:"Full",start:1,cantrips:3}},
-  "Sorcerer":{hd:6,saves:["con","cha"],pick:2,label:"Sorcerer — d6 · CHA · Saves: CON, CHA",skills:["Arcana","Deception","Insight","Intimidation","Persuasion"],features:[],spell:{ab:"cha",type:"Full",start:1,cantrips:4}},
-  "Warlock":{hd:8,saves:["wis","cha"],pick:2,label:"Warlock — d8 · CHA · Saves: WIS, CHA",skills:["Arcana","Deception","History","Intimidation","Investigation","Religion"],features:[],spell:{ab:"cha",type:"Pact",start:1,cantrips:2,shortRest:true}},
-  "Bard":{hd:8,saves:["dex","cha"],pick:3,label:"Bard — d8 · CHA · Saves: DEX, CHA",skills:["ALL"],features:["Bardic Inspiration: Bonus action — give an ally a Bardic Inspiration die to add to one roll within 10 minutes"],spell:{ab:"cha",type:"Full",start:1,cantrips:2}},
-  "Artificer":{hd:8,saves:["con","int"],pick:2,label:"Artificer — d8 · INT · Saves: CON, INT",skills:["Arcana","History","Investigation","Medicine","Nature","Perception","Sleight of Hand"],features:["Magic Tinkering: Imbue a tiny nonmagical object with a minor magical effect (action)"],spell:{ab:"int",type:"Half",start:1}}
-};
+const CLASSES = {
+  "Fighter": {
+    label: "Fighter — d10 · STR or DEX · Saves: STR, CON",
+    hd: 10,
+    saves: ["str", "con"],
+    pick: 2,
+    skills: ["Athletics","Acrobatics","Animal Handling","History","Insight","Intimidation","Perception","Survival"],
+    features: [
+      "Fighting Style: +1 attack rolls OR +1 AC OR +2 melee damage",
+      "Second Wind: Regain 1d10 + level HP (bonus action, 1/short rest)"
+    ]
+  },
 
-const BACKGROUNDS={
-  "Veteran":{label:"Veteran (Athletics, Intimidation)",skills:["Athletics","Intimidation"],feat:"Rank: Military forces recognize your experience and offer cooperation."},
-  "Warden":{label:"Warden (Perception, Insight)",skills:["Perception","Insight"],feat:"Authority: Commoners and guards cooperate when you present official authority."},
-  "Shadow":{label:"Shadow (Deception, Stealth)",skills:["Deception","Stealth"],feat:"Contact: You maintain a reliable criminal contact who can provide information or illicit access."},
-  "Wayfinder":{label:"Wayfinder (Survival, Perception)",skills:["Survival","Perception"],feat:"Safe Passage: Identify safer routes and avoid obvious natural dangers during travel."},
-  "Adept":{label:"Adept (Insight, Religion)",skills:["Insight","Religion"],feat:"Sanctuary: Temples and aligned orders offer you basic shelter and aid."},
-  "Scribe":{label:"Scribe (History, Investigation)",skills:["History","Investigation"],feat:"Research: You know where and how to locate information if it exists."},
-  "Trader":{label:"Trader (Persuasion, Insight)",skills:["Persuasion","Insight"],feat:"Markets: Find buyers, sellers, and fair prices in most settlements."},
-  "Artisan":{label:"Artisan (Investigation, Persuasion)",skills:["Investigation","Persuasion"],feat:"Guild Membership: Craft networks provide lodging, work, and minor assistance."},
-  "Laborer":{label:"Laborer (Athletics, Survival)",skills:["Athletics","Survival"],feat:"Work: Always find basic labor and simple shelter in settlements."},
-  "Reclaimer":{label:"Reclaimer (Investigation, Athletics)",skills:["Investigation","Athletics"],feat:"Salvage: You can locate useful materials or minor valuables in ruins and debris."},
-  "Outrider":{label:"Outrider (Animal Handling, Survival)",skills:["Animal Handling","Survival"],feat:"Relay: Secure mounts, directions, or minor assistance from outposts and travelers."},
-  "Entertainer":{label:"Entertainer (Performance, Acrobatics)",skills:["Performance","Acrobatics"],feat:"Audience: You can find places to perform and earn modest food and lodging."},
-  "Exiled":{label:"Exiled (Stealth, Survival)",skills:["Stealth","Survival"],feat:"Unwelcome Name: In places tied to your past, your identity carries consequences."},
-  "Beast-Tamer":{label:"Beast-Tamer (Animal Handling, Survival)",skills:["Animal Handling","Survival"],feat:"Bonded Beast: You have a trained companion creature or strong rapport with wild beasts."},
-  "Hunter":{label:"Hunter (Survival, Perception)",skills:["Survival","Perception"],feat:"Forage: You can reliably find food, water, and shelter in natural environments."}
+  "Barbarian": {
+    label: "Barbarian — d12 · STR · Saves: STR, CON",
+    hd: 12,
+    saves: ["str", "con"],
+    pick: 2,
+    skills: ["Animal Handling","Athletics","Intimidation","Nature","Perception","Survival"],
+    features: [
+      "Rage (Bonus Action): 2 uses/long rest. Resistance to bludgeoning, piercing, slashing + bonus STR damage."
+    ]
+  },
+
+  "Rogue": {
+    label: "Rogue — d8 · DEX · Saves: DEX, INT",
+    hd: 8,
+    saves: ["dex", "int"],
+    pick: 4,
+    skills: ["Acrobatics","Athletics","Deception","Insight","Intimidation","Investigation","Perception","Performance","Persuasion","Sleight of Hand","Stealth"],
+    features: [
+      "Sneak Attack: +1d6 once per turn if advantage or ally nearby",
+      "Cunning Action: Dash, Disengage, or Hide (bonus action)"
+    ]
+  },
+
+  "Monk": {
+    label: "Monk — d8 · DEX & WIS · Saves: STR, DEX",
+    hd: 8,
+    saves: ["str", "dex"],
+    pick: 2,
+    skills: ["Acrobatics","Athletics","History","Insight","Religion","Stealth"],
+    features: [
+      "Martial Arts: Bonus unarmed strike after Attack action"
+    ]
+  },
+
+  "Ranger": {
+    label: "Ranger — d10 · DEX & WIS · Saves: DEX, WIS",
+    hd: 10,
+    saves: ["dex", "wis"],
+    pick: 3,
+    skills: ["Animal Handling","Athletics","Insight","Investigation","Nature","Perception","Stealth","Survival"],
+    features: [
+      "Natural Explorer: Advantage on tracking in natural environments"
+    ],
+    spell: { ab: "wis", type: "half", start: 2 }
+  },
+
+  "Paladin": {
+    label: "Paladin — d10 · STR & CHA · Saves: WIS, CHA",
+    hd: 10,
+    saves: ["wis", "cha"],
+    pick: 2,
+    skills: ["Athletics","Insight","Intimidation","Medicine","Persuasion","Religion"],
+    features: [
+      "Lay on Hands: Heal using pool (5 × level)"
+    ],
+    spell: { ab: "cha", type: "half", start: 2 }
+  },
+
+  "Cleric": {
+    label: "Cleric — d8 · WIS · Saves: WIS, CHA",
+    hd: 8,
+    saves: ["wis", "cha"],
+    pick: 2,
+    skills: ["History","Insight","Medicine","Persuasion","Religion"],
+    features: [],
+    spell: { ab: "wis", type: "full", start: 1, cantrips: 3 }
+  },
+
+  "Druid": {
+    label: "Druid — d8 · WIS · Saves: WIS, DEX",
+    hd: 8,
+    saves: ["wis", "dex"],
+    pick: 2,
+    skills: ["Arcana","Animal Handling","Insight","Medicine","Nature","Perception","Survival"],
+    features: [],
+    spell: { ab: "wis", type: "full", start: 1, cantrips: 2 }
+  },
+
+  "Wizard": {
+    label: "Wizard — d6 · INT · Saves: INT, WIS",
+    hd: 6,
+    saves: ["int", "wis"],
+    pick: 2,
+    skills: ["Arcana","History","Insight","Investigation","Medicine","Religion"],
+    features: [],
+    spell: { ab: "int", type: "full", start: 1, cantrips: 3 }
+  },
+
+  "Sorcerer": {
+    label: "Sorcerer — d6 · CHA · Saves: CON, CHA",
+    hd: 6,
+    saves: ["con", "cha"],
+    pick: 2,
+    skills: ["Arcana","Deception","Insight","Intimidation","Persuasion"],
+    features: [],
+    spell: { ab: "cha", type: "full", start: 1, cantrips: 4 }
+  },
+
+  "Warlock": {
+    label: "Warlock — d8 · CHA · Saves: WIS, CHA",
+    hd: 8,
+    saves: ["wis", "cha"],
+    pick: 2,
+    skills: ["Arcana","Deception","History","Intimidation","Investigation","Religion"],
+    features: [],
+    spell: { ab: "cha", type: "pact", start: 1, cantrips: 2, shortRest: true }
+  },
+
+  "Bard": {
+    label: "Bard — d8 · CHA · Saves: DEX, CHA",
+    hd: 8,
+    saves: ["dex", "cha"],
+    pick: 3,
+    skills: ["any"],
+    features: [
+      "Bardic Inspiration: Bonus action — give ally die to add to a roll"
+    ],
+    spell: { ab: "cha", type: "full", start: 1, cantrips: 2 }
+  },
+
+  "Artificer": {
+    label: "Artificer — d8 · INT · Saves: CON, INT",
+    hd: 8,
+    saves: ["con", "int"],
+    pick: 2,
+    skills: ["Arcana","History","Investigation","Medicine","Nature","Perception","Sleight of Hand"],
+    tools: ["Thieves’ Tools","Tinker’s Tools","One Artisan Tool"],
+    features: [
+      "Magic Tinkering: Create minor magical effects using tools"
+    ],
+    spell: { ab: "int", type: "half", start: 1 }
+  }
+};
+const BACKGROUNDS = {
+  "Veteran": {
+    label: "Veteran (Athletics, Intimidation)",
+    skills: ["Athletics", "Intimidation"],
+    tools: ["Gaming Set", "Vehicles (Land)"],
+    equipment: "Weathered uniform, insignia, gaming set, belt pouch (10 gp)",
+    feature: "Rank: Military forces recognize your experience and offer cooperation."
+  },
+
+  "Warden": {
+    label: "Warden (Perception, Insight)",
+    skills: ["Perception", "Insight"],
+    tools: ["Gaming Set"],
+    equipment: "Badge/tabard, whistle, notebook, belt pouch (10 gp)",
+    feature: "Authority: Commoners and guards tend to cooperate with official authority."
+  },
+
+  "Shadow": {
+    label: "Shadow (Deception, Stealth)",
+    skills: ["Deception", "Stealth"],
+    tools: ["Thieves’ Tools", "Disguise Kit"],
+    equipment: "Crowbar, dark hooded clothes, belt pouch (15 gp)",
+    feature: "Contact: You have a reliable criminal contact for information or access."
+  },
+
+  "Wayfinder": {
+    label: "Wayfinder (Survival, Perception)",
+    skills: ["Survival", "Perception"],
+    tools: ["Navigator’s Tools"],
+    equipment: "Staff, maps, travel cloak, belt pouch (10 gp)",
+    feature: "Safe Passage: You can identify safer routes and avoid natural hazards."
+  },
+
+  "Adept": {
+    label: "Adept (Insight, Religion)",
+    skills: ["Insight", "Religion"],
+    languages: 2,
+    equipment: "Holy symbol or focus, ritual text, vestments, belt pouch (15 gp)",
+    feature: "Sanctuary: Temples and orders offer you shelter and aid."
+  },
+
+  "Scribe": {
+    label: "Scribe (History, Investigation)",
+    skills: ["History", "Investigation"],
+    languages: 2,
+    tools: ["Calligrapher’s Supplies"],
+    equipment: "Ink, quill, notes, reference book, belt pouch (10 gp)",
+    feature: "Research: You know how to locate information if it exists."
+  },
+
+  "Trader": {
+    label: "Trader (Persuasion, Insight)",
+    skills: ["Persuasion", "Insight"],
+    tools: ["Navigator’s Tools", "Vehicles (Land)"],
+    equipment: "Ledger, seal, travel clothes, belt pouch (15 gp)",
+    feature: "Markets: You can find fair trades and buyers in most settlements."
+  },
+
+  "Artisan": {
+    label: "Artisan (Investigation, Persuasion)",
+    skills: ["Investigation", "Persuasion"],
+    tools: ["Artisan’s Tools (one type)"],
+    equipment: "Tools, apron, belt pouch (15 gp)",
+    feature: "Guild Membership: Craft networks provide work and support."
+  },
+
+  "Laborer": {
+    label: "Laborer (Athletics, Survival)",
+    skills: ["Athletics", "Survival"],
+    tools: ["Artisan’s Tools (one type)"],
+    equipment: "Work clothes, rope (50 ft), belt pouch (10 gp)",
+    feature: "Work: You can find basic labor and shelter in settlements."
+  },
+
+  "Reclaimer": {
+    label: "Reclaimer (Investigation, Athletics)",
+    skills: ["Investigation", "Athletics"],
+    tools: ["Thieves’ Tools or Mason’s Tools"],
+    equipment: "Crowbar, salvage kit, belt pouch (10 gp)",
+    feature: "Salvage: You can find useful materials in ruins and debris."
+  },
+
+  "Outrider": {
+    label: "Outrider (Animal Handling, Survival)",
+    skills: ["Animal Handling", "Survival"],
+    tools: ["Vehicles (Land)"],
+    equipment: "Riding gear, signal horn, travel cloak, belt pouch (10 gp)",
+    feature: "Relay: You can secure mounts and assistance from outposts."
+  },
+
+  "Entertainer": {
+    label: "Entertainer (Performance, Acrobatics)",
+    skills: ["Performance", "Acrobatics"],
+    tools: ["Disguise Kit", "Musical Instrument (one)"],
+    equipment: "Costume, instrument, tip pouch, belt pouch (10 gp)",
+    feature: "Audience: You can earn lodging and food through performance."
+  },
+
+  "Exiled": {
+    label: "Exiled (Stealth, Survival)",
+    skills: ["Stealth", "Survival"],
+    tools: ["Disguise Kit"],
+    equipment: "Travel cloak, token from past, belt pouch (10 gp)",
+    feature: "Unwelcome Name: Your identity has consequences in certain places."
+  },
+
+  "Beast-Tamer": {
+    label: "Beast-Tamer (Animal Handling, Survival)",
+    skills: ["Animal Handling", "Survival"],
+    tools: ["Herbalism Kit", "Vehicles (Land)"],
+    equipment: "Whistle or token, simple clothes, belt pouch (10 gp)",
+    feature: "Bonded Beast: You have a trained companion or strong beast rapport."
+  },
+
+  "Hunter": {
+    label: "Hunter (Survival, Perception)",
+    skills: ["Survival", "Perception"],
+    tools: ["Herbalism Kit"],
+    equipment: "Trap, cloak, belt pouch (10 gp)",
+    feature: "Forage: You can reliably find food, water, and shelter in nature."
+  },
+
+  "Medic": {
+    label: "Medic (Medicine, Insight)",
+    skills: ["Medicine", "Insight"],
+    tools: ["Herbalism Kit", "Alchemist’s Supplies"],
+    equipment: "Medical kit, journal of cases, simple clothes, belt pouch (10 gp)",
+    feature: "Triage: You can stabilize creatures as a bonus action and improve short rest recovery for allies."
+  },
 };
 
 const ALL_SKILLS=[["Acrobatics","dex"],["Animal Handling","wis"],["Arcana","int"],["Athletics","str"],["Deception","cha"],["History","int"],["Insight","wis"],["Intimidation","cha"],["Investigation","int"],["Medicine","wis"],["Nature","int"],["Perception","wis"],["Performance","cha"],["Persuasion","cha"],["Religion","int"],["Sleight of Hand","dex"],["Stealth","dex"],["Survival","wis"]];
