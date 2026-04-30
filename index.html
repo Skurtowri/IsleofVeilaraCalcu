@@ -380,30 +380,6 @@ select.finput option{background:#fff;color:#1a1510;font-family:Georgia,serif}
 .sb-two-col{display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start}
 .sb-sticky-panel{position:sticky;top:70px}
 
-/* ═══ MY SPELLBOOK PANEL ═══ */
-.mybook-panel{background:var(--bg2);border:1.5px solid rgba(196,154,46,.35);border-radius:var(--rlg);padding:22px 20px 18px;position:relative;box-shadow:0 3px 0 rgba(196,154,46,.3),0 8px 32px rgba(0,0,0,.5),inset 0 1px 0 rgba(196,154,46,.1)}
-.mybook-panel::before{content:'';position:absolute;top:0;left:10px;right:10px;height:3px;background:linear-gradient(90deg,transparent,var(--gold2),var(--gold3),var(--gold2),transparent);border-radius:0 0 2px 2px;opacity:.7}
-.mybook-title{font-family:var(--fg);font-size:18px;color:var(--gold);letter-spacing:.1em;text-shadow:0 0 20px rgba(196,154,46,.5);margin-bottom:12px;display:flex;align-items:center;gap:12px}
-.mybook-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(196,154,46,.4),transparent)}
-.sb-stats-row{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap}
-.sb-stat{flex:1;min-width:70px;text-align:center;background:rgba(196,154,46,.06);border:1px solid rgba(196,154,46,.15);border-radius:var(--r);padding:8px 6px}
-.sb-stat-val{font-family:var(--fg);font-size:18px;color:var(--gold2);line-height:1}
-.sb-stat-lbl{font-family:var(--fh);font-size:8px;color:rgba(196,154,46,.5);letter-spacing:.14em;text-transform:uppercase;margin-top:2px;font-weight:700}
-.sb-empty-msg{font-family:var(--fb);font-size:14px;color:rgba(196,154,46,.4);font-style:italic;text-align:center;padding:20px 0}
-.sb-inner-list{display:flex;flex-direction:column;gap:3px;max-height:420px;overflow-y:auto;padding-right:2px}
-.sb-inner-list::-webkit-scrollbar{width:3px}
-.sb-inner-list::-webkit-scrollbar-thumb{background:rgba(196,154,46,.3);border-radius:2px}
-.sb-group-hdr{font-family:var(--fh);font-size:9px;color:rgba(196,154,46,.5);letter-spacing:.2em;text-transform:uppercase;padding:8px 4px 4px;border-bottom:1px solid rgba(196,154,46,.1);margin-bottom:3px;font-weight:700}
-.sb-item-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:var(--r);border-left:2px solid transparent;background:rgba(255,255,255,.04);transition:background .15s,border-color .15s;animation:shimIn .3s ease both}
-.sb-item-row:hover{background:rgba(255,255,255,.08);border-left-color:var(--gold2)}
-.sb-item-lvl{font-family:var(--fg);font-size:11px;color:var(--gold2);min-width:18px;text-align:center}
-.sb-item-name{font-family:var(--fh);font-size:12px;color:var(--p2);flex:1;font-weight:600;letter-spacing:.02em}
-.sb-item-school{font-family:var(--fh);font-size:8px;color:rgba(196,154,46,.45);letter-spacing:.1em;text-transform:uppercase}
-.sb-remove{font-size:12px;color:rgba(192,57,43,.4);cursor:pointer;transition:color .15s,transform .15s;padding:2px 4px}
-.sb-remove:hover{color:var(--red);transform:scale(1.2)}
-.export-btn{font-family:var(--fh);font-size:10px;padding:7px 14px;border-radius:20px;background:rgba(196,154,46,.08);border:1.5px solid rgba(196,154,46,.35);color:var(--gold);cursor:pointer;letter-spacing:.1em;font-weight:700;transition:all .2s;touch-action:manipulation;width:100%;margin-top:12px}
-.export-btn:hover{background:rgba(196,154,46,.16)}
-
 /* ═══ STATS BAR ═══ */
 .filter-stats-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 16px;background:linear-gradient(135deg,var(--p2),var(--p3));border-radius:var(--r);border:1.5px solid var(--bdr2);margin-bottom:16px}
 .fs-item{display:flex;flex-direction:column;align-items:center;flex:1;min-width:70px}
@@ -670,30 +646,15 @@ select.finput option{background:#fff;color:#1a1510;font-family:Georgia,serif}
     </div>
   </section>
 
-  <!-- Two-col: Spell Grid + My Spellbook -->
-  <div class="sb-two-col">
-    <!-- Left: Cards -->
+  <!-- Two-col: Spell Grid  -->
+  <div class="sb-three-col">
+  
     <div>
       <div id="spell-grid" class="spells-grid">
         <div class="empty-state"><div class="empty-glyph">⚗</div><div class="empty-txt">Summoning spells…</div></div>
       </div>
     </div>
-    <!-- Right: My Spellbook -->
-    <div class="sb-sticky-panel">
-      <div class="mybook-panel">
-        <div class="mybook-title">✦ My Spellbook</div>
-        <div class="sb-stats-row">
-          <div class="sb-stat"><div class="sb-stat-val" id="book-total">0</div><div class="sb-stat-lbl">Inscribed</div></div>
-          <div class="sb-stat"><div class="sb-stat-val" id="book-cantrips">0</div><div class="sb-stat-lbl">Cantrips</div></div>
-          <div class="sb-stat"><div class="sb-stat-val" id="book-leveled">0</div><div class="sb-stat-lbl">Leveled</div></div>
-        </div>
-        <div id="spellbook-list">
-          <div class="sb-empty-msg">✦<br>No spells inscribed.<br><small style="font-size:12px">Tap ＋ on any card.</small></div>
-        </div>
-        <button class="export-btn" onclick="exportSpellbook()">⟶ Export Spellbook as Text</button>
-      </div>
-    </div>
-  </div>
+  
 
 </main>
 </div>
@@ -1559,22 +1520,6 @@ function updateSpellStats(){
   $('sp-stat-conc').textContent=filteredSpells.filter(s=>s.concentration).length;
 }
 
-function exportSpellbook(){
-  if(!spellbook.size){alert('Your spellbook is empty!');return;}
-  const inscribed=SPELLS.filter(s=>spellbook.has(s.name));
-  const byLevel={};inscribed.forEach(s=>{if(!byLevel[s.level])byLevel[s.level]=[];byLevel[s.level].push(s);});
-  let txt='╔══════════════════════════════════════╗\n║   VEILARA — MY SPELLBOOK            ║\n╚══════════════════════════════════════╝\n\n';
-  if(charContext)txt+=`Character: Level ${charContext.level} ${charContext.className}\n\n`;
-  Object.keys(byLevel).sort((a,b)=>a-b).forEach(lvl=>{
-    txt+=`--- ${lvl==='0'?'CANTRIPS':levelLabel(parseInt(lvl)).toUpperCase()} ---\n`;
-    byLevel[lvl].forEach(s=>{txt+=`• ${s.name} [${s.school}] — ${s.castTime}, ${s.range}, ${s.duration}\n`;});
-    txt+='\n';
-  });
-  const blob=new Blob([txt],{type:'text/plain'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');a.href=url;a.download='veilara-spellbook.txt';a.click();
-  URL.revokeObjectURL(url);
-}
 
 // ══════════════════════════════════════════════════════════
 //  INIT
