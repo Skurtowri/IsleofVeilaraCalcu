@@ -751,20 +751,295 @@ const PIP={good:'⬆',bad:'⬇',neutral:'◆'};
 // ══════════════════════════════════════════════════════════
 //  RACE DATA
 // ══════════════════════════════════════════════════════════
-const RACES={
-  "Humanian":{asi:{str:1,dex:1,con:1,int:1,wis:1,cha:1},speed:30,size:"Medium",traits:["Adaptable Training: When you fail a skill check, you can instead choose to gain advantage on your next attempt of that same check. Once per long rest.","Cosmic Adaptability: You gain proficiency in one skill of your choice."],langs:"Common + 1 language of choice",subraces:{"(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]}}},
-  "Etharian":{asi:{con:2,str:1},speed:30,size:"Medium",traits:["Volatile Chemistry: Your body naturally neutralizes harmful substances. You have resistance to poison damage.","Pressurized Body: When you fall, you reduce falling damage by half — only if you are conscious."],langs:"Common and Etharian",subraces:{"(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]}}},
-  "Dwarken":{asi:{con:2},speed:25,size:"Medium",traits:["Stonecunning: You gain proficiency in Intelligence (History) checks related to stonework or metalwork. If already proficient, you gain advantage instead.","Stone Endurance: When you take damage, you can use your reaction to reduce the damage by your Proficiency bonus + CON modifier. Once per long rest."],langs:"Common and Dwarken",subraces:{"(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},"Frost Dwarken":{asi:{str:1},label:"Frost Dwarken (+1 STR)",traits:["Cold Adaptation: You ignore the harmful effects of extreme cold environments."]},"Magwarn":{asi:{str:1},label:"Magwarn (+1 STR)",traits:["Fire Resistance: You ignore the harmful effects of extreme heat environments."]}}},
-  "Scallion":{asi:{dex:2},speed:30,size:"Medium",traits:["Predator's Reflex: Once per short rest, you can add your proficiency bonus to your initiative roll.","Cold-Blooded: In extreme cold, you have disadvantage on Strength and Dexterity checks unless you are in a warm environment or wearing cold-weather gear."],langs:"Common and Scallion",subraces:{"(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},"Raptoid":{asi:{wis:1},label:"Raptoid (+1 WIS)",traits:["Swift Pursuit: When you sprint, enemies trying to strike you as you pass have disadvantage on opportunity attacks until the end of your turn."]},"Ceraknight":{asi:{str:1},label:"Ceraknight (+1 STR)",traits:["Cera-Response: When a creature misses you with a melee attack, you can immediately slip up to 10 feet away without provoking opportunity attacks. Once per long rest."]}}},
-  "Falenian":{asi:{str:2},speed:25,swim:40,size:"Medium",traits:["Deep Lungs: You can hold your breath for up to 1 hour while underwater.","Aquatic Echolocation: As an action, you sense the presence of creatures within 15 feet in the same body of water. Once per short rest.","Oceanic Instinct: You have proficiency in Athletics."],skills:["Athletics"],langs:"Common and Falenian",subraces:{"(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},"Currenter":{asi:{con:1},label:"Currenter (+1 CON)",traits:["Bog Adaptation: You ignore difficult terrain caused by mud, swamp, shallow water, and currents."]},"Abyssian":{asi:{con:1},label:"Abyssian (+1 CON)",traits:["Abyssal Cold: You have resistance to cold damage."]}}},
-  "Hadroan":{asi:{wis:2},speed:30,darkvision:90,size:"Medium",traits:["Darkvision: You can see in dim light within 90 feet as if it were bright light, and in darkness as if it were dim light.","Silent Stride: While moving at half your speed or slower, you have advantage on Dexterity (Stealth) checks made to move silently.","Sunlight Sensitivity: While in bright sunlight, you have disadvantage on Wisdom (Perception) checks that rely on sight."],langs:"Common and Hadroan",subraces:{"(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},"Marsh-Hadroan":{asi:{dex:1},label:"Marsh-Hadroan (+1 DEX)",traits:["Mask of the Wild: You can attempt to hide even when only lightly obscured by natural terrain."]},"Peak-Hadroan":{asi:{int:1},label:"Peak-Hadroan (+1 INT)",traits:["Crest Sense: While in dim light or darkness, you have advantage on Wisdom (Perception) checks that rely on hearing."]}}},
-  "Tusker":{asi:{str:2},speed:30,size:"Medium",traits:["Mass Authority: You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.","Immovable: You have advantage on checks and saving throws against being shoved or knocked prone.","Heavy Presence: You have disadvantage on Stealth checks when you aren't fully concealed."],langs:"Common and Tusker",subraces:{"(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},"Loxodon":{asi:{con:1},label:"Loxodon (+1 CON)",traits:["Tectonic Charge: Once per long rest, if you charge at least 10 feet toward a creature and hit it, you can shove the target up to 10 feet away."]},"Mammuthus":{asi:{con:1},label:"Mammuthus (+1 CON)",traits:["Glacial Blood: You are naturally adapted to cold climates. You take only half damage from cold damage."]}}},
-  "Smiloborn":{asi:{str:2},speed:30,size:"Medium",traits:["Scent Instinct: You have advantage on Perception and Survival checks that rely on smell.","Intimidating Presence: You have proficiency in Intimidation.","Natural Weapons: Your fangs deal 1d4 + your Strength modifier piercing damage."],skills:["Intimidation"],langs:"Common and Smiloborn",subraces:{"(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},"Primal-Fang":{asi:{dex:1},label:"Primal-Fang (+1 DEX)",traits:["Scent Tracker: When you successfully track a creature by scent, your speed increases by 10 feet when moving toward that creature."]},"Code-Fang":{asi:{con:1},label:"Code-Fang (+1 CON)",traits:["Protective Presence: Once per long rest, when an ally within 10 feet of you is hit, you can use your reaction to enter a protective fury."]}}},
-  "Glimmer":{asi:{int:2,wis:1},speed:30,size:"Medium",traits:["Seismic Sense: As an action, while touching a solid surface, you sense the presence of creatures within a 20-foot radius until the end of your turn. Uses equal to your proficiency bonus.","Semi-Blind: You see clearly within 60 feet, but beyond that distance fine details blur.","Sound Sensitivity: While deafened, you cannot use Seismic Sense."],langs:"Common and Glimmer",subraces:{"(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]}}},
-  "Lilliput":{asi:{dex:2},speed:30,size:"Small",traits:["Slip Through: You can move through the space of any creature larger than you, but cannot end your turn in another creature's space.","People Sense: You have proficiency in Insight."],skills:["Insight"],langs:"Common and Lilliput",subraces:{"(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},"Hearthput":{asi:{cha:1},label:"Hearthput (+1 CHA)",traits:["Warm Presence: You have proficiency in Persuasion."],skills:["Persuasion"]}}},
-  "Elvian":{asi:{int:2},speed:30,darkvision:60,size:"Medium",traits:["Darkvision: You can see in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.","Chronicle Mind: You have proficiency in History.","Fey Ancestry: You have advantage on saving throws against being charmed, and magic can't put you to sleep."],skills:["History"],langs:"Common, Elvish + 1 language of choice",subraces:{"(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]},"Rune Elf":{asi:{wis:1},label:"Rune Elf (+1 WIS)",traits:["Arcane Notation: You have proficiency in Arcana."],skills:["Arcana"]},"Terran Elf":{asi:{wis:1},label:"Terran Elf (+1 WIS)",traits:["Natural Affinity: You have proficiency in Nature."],skills:["Nature"]}}},
-  "Orcan":{asi:{str:2},speed:30,swim:20,size:"Medium",traits:["Killer Endurance: When you are reduced to 0 hit points, you can drop to 1 hit point instead. Once per long rest.","Water Adaptation: You can hold your breath for up to 15 minutes."],langs:"Common and Orcan",subraces:{"(No Subrace)":{"asi":{},"label":"(No Subrace)","traits":[]},"Whitecan":{"asi":{"dex":1},"label":"Whitecan (+1 DEX)","traits":["Momentum Step: When Killer Endurance activates, you ignore difficult terrain until the end of your next turn."]},"Ironcan":{"asi":{"dex":1},"label":"Ironcan (+1 DEX)","traits":["Apex Focus: When you take damage from a creature, you gain advantage on Wisdom (Insight) checks you make to read or predict that creature’s behavior until the end of your next turn."]}}},
-  "Chronar":{asi:{int:2,dex:1},speed:30,size:"Medium",traits:["Mechanist's Insight: You gain proficiency with Tinker's Tools.","Mending Interface: You know the mending cantrip (Intelligence). Usable only while holding tools. Once per long rest.","Adaptive Restraint Response: You have advantage on saving throws to resist or escape nonmagical restraints."],langs:"Common and Chronarsian",subraces:{"(No Subrace)":{asi:{},label:"(No Subrace)",traits:[]}}}
+const RACES = {
+  "Humanian": {
+    asi: { str: 1, dex: 1, con: 1, int: 1, wis: 1, cha: 1 },
+    speed: 30,
+    size: "Medium",
+    traits: [
+      "Adaptable Training: When you fail a skill check, you can instead choose to gain advantage on your next attempt of that same check. Once per long rest.",
+      "Cosmic Adaptability: You gain proficiency in one skill or tool of your choice."
+    ],
+    langs: "Common + 1 language of choice",
+    subraces: {
+      "(No Subrace)": { asi: {}, label: "(No Subrace)", traits: [] }
+    }
+  },
+
+  "Etharian": {
+    asi: { con: 2, str: 1 },
+    speed: 30,
+    size: "Medium",
+    traits: [
+      "Volatile Chemistry: You have resistance to poison damage.",
+      "Pressurized Body: When you take falling damage, reduce it by your proficiency bonus."
+    ],
+    langs: "Common and Etharian",
+    subraces: {
+      "(No Subrace)": { asi: {}, label: "(No Subrace)", traits: [] }
+    }
+  },
+
+  "Dwarken": {
+    asi: { con: 2 },
+    speed: 25,
+    size: "Medium",
+    traits: [
+      "Darkvision: 60 ft.",
+      "Stonecunning: You gain proficiency in Intelligence (History) checks related to stonework or metalwork.",
+      "Stone Endurance: You have resistance to non-magical bludgeoning damage."
+    ],
+    langs: "Common and Dwarken",
+    subraces: {
+      "(No Subrace)": { asi: {}, label: "(No Subrace)", traits: [] },
+      "Frost Dwarken": {
+        asi: { str: 1 },
+        label: "Frost Dwarken (+1 STR)",
+        traits: ["Cold Adaptation: You ignore the harmful effects of extreme cold environments."]
+      },
+      "Magwarn": {
+        asi: { str: 1 },
+        label: "Magwarn (+1 STR)",
+        traits: ["Fire Adaptation: You ignore the harmful effects of extreme heat environments."]
+      }
+    }
+  },
+
+  "Scallion": {
+    asi: { dex: 2 },
+    speed: 30,
+    size: "Medium",
+    traits: [
+      "Predator's Reflex: Once per short rest, you can add your proficiency bonus to your initiative roll.",
+      "Cold-Blooded: In extreme cold, you have disadvantage on Strength and Dexterity checks unless you are in a warm environment or wearing cold-weather gear."
+    ],
+    langs: "Common and Scallion",
+    subraces: {
+      "(No Subrace)": { asi: {}, label: "(No Subrace)", traits: [] },
+      "Raptoid": {
+        asi: { wis: 1 },
+        label: "Raptoid (+1 WIS)",
+        traits: ["Swift Pursuit: When you hit a creature, your speed increases by 5 ft until the end of your turn."]
+      },
+      "Ceraknight": {
+        asi: { str: 1 },
+        label: "Ceraknight (+1 STR)",
+        traits: ["Cera-Response: When a creature misses you with a melee attack, you can move 5 ft without provoking opportunity attacks. Once per short rest."]
+      }
+    }
+  },
+
+  "Falenian": {
+    asi: { str: 2 },
+    speed: 25,
+    swim: 40,
+    size: "Medium",
+    traits: [
+      "Deep Lungs: You can hold your breath for up to 1 hour while underwater.",
+      "Oceanic Body: You have proficiency in Athletics.",
+      "Aquatic Echolocation: As an action, you sense the presence of creatures within 15 feet in the same body of water. Once per short rest."
+    ],
+    skills: ["Athletics"],
+    langs: "Common and Falenian",
+    subraces: {
+      "(No Subrace)": { asi: {}, label: "(No Subrace)", traits: [] },
+      "Currenter": {
+        asi: { con: 1 },
+        label: "Currenter (+1 CON)",
+        traits: ["Bog Adaptation: You ignore difficult terrain caused by mud, swamp, shallow water, and currents."]
+      },
+      "Abyssian": {
+        asi: { con: 1 },
+        label: "Abyssian (+1 CON)",
+        traits: ["Abyssal Cold: You have resistance to cold damage."]
+      }
+    }
+  },
+
+  "Hadroan": {
+    asi: { wis: 2 },
+    speed: 30,
+    darkvision: 90,
+    size: "Medium",
+    traits: [
+      "Darkvision: You can see in dim light within 90 feet as if it were bright light, and in darkness as if it were dim light.",
+      "Silent Stride: While moving at half speed or slower, you have advantage on Dexterity (Stealth) checks.",
+      "Sunlight Sensitivity: You have disadvantage on Wisdom (Perception) checks that rely on sight in direct sunlight."
+    ],
+    langs: "Common and Hadroan",
+    subraces: {
+      "(No Subrace)": { asi: {}, label: "(No Subrace)", traits: [] },
+      "Marsh-Hadroan": {
+        asi: { dex: 1 },
+        label: "Marsh-Hadroan (+1 DEX)",
+        traits: ["Mask of the Wild: You can attempt to hide even when lightly obscured by natural terrain."]
+      },
+      "Peak-Hadroan": {
+        asi: { int: 1 },
+        label: "Peak-Hadroan (+1 INT)",
+        traits: ["Crest Sense: You have advantage on Wisdom (Perception) checks that rely on hearing in dim light or darkness."]
+      }
+    }
+  },
+
+  "Tusker": {
+    asi: { str: 2 },
+    speed: 30,
+    size: "Medium",
+    traits: [
+      "Mass Authority: You count as one size larger for carrying capacity and pushing, dragging, or lifting.",
+      "Immovable: You have advantage on checks and saving throws against being shoved or knocked prone.",
+      "Heavy Presence: You have disadvantage on Stealth checks when not fully concealed."
+    ],
+    langs: "Common and Tusker",
+    subraces: {
+      "(No Subrace)": { asi: {}, label: "(No Subrace)", traits: [] },
+      "Loxodon": {
+        asi: { con: 1 },
+        label: "Loxodon (+1 CON)",
+        traits: [
+          "Tectonic Charge: Once per long rest, if you move 10 ft straight toward a creature and hit it, you can shove it up to 10 ft."
+        ]
+      },
+      "Mammuthus": {
+        asi: { con: 1 },
+        label: "Mammuthus (+1 CON)",
+        traits: ["Glacial Blood: You are naturally adapted to cold climates."]
+      }
+    }
+  },
+
+  "Smiloborn": {
+    asi: { str: 2 },
+    speed: 30,
+    size: "Medium",
+    traits: [
+      "Scent Instinct: You have advantage on Perception and Survival checks that rely on smell.",
+      "Intimidating Presence: You have proficiency in Intimidation.",
+      "Natural Weapons: Your fangs deal 1d4 + Strength modifier piercing damage."
+    ],
+    skills: ["Intimidation"],
+    langs: "Common and Smiloborn",
+    subraces: {
+      "(No Subrace)": { asi: {}, label: "(No Subrace)", traits: [] },
+      "Primal-Fang": {
+        asi: { dex: 1 },
+        label: "Primal-Fang (+1 DEX)",
+        traits: ["Scent Tracker: When tracking by scent, your speed increases by 10 ft toward the target."]
+      },
+      "Code-Fang": {
+        asi: { con: 1 },
+        label: "Code-Fang (+1 CON)",
+        traits: ["Protective Presence: Once per long rest, when an ally within 10 ft is hit, you can use your reaction to gain +10 ft speed until end of your next turn."]
+      }
+    }
+  },
+
+  "Glimmer": {
+    asi: { int: 2, wis: 1 },
+    speed: 30,
+    size: "Medium",
+    traits: [
+      "Seismic Sense: While touching a solid surface, you sense movement within 20 ft until end of turn. Uses equal to proficiency bonus per long rest.",
+      "Semi-Blind: You see clearly within 60 ft, beyond that details blur.",
+      "Sound Sensitivity: You cannot use Seismic Sense while deafened."
+    ],
+    langs: "Common and Glimmer",
+    subraces: {
+      "(No Subrace)": { asi: {}, label: "(No Subrace)", traits: [] }
+    }
+  },
+
+  "Lilliput": {
+    asi: { dex: 2 },
+    speed: 30,
+    size: "Small",
+    traits: [
+      "Slip Through: You can move through spaces of creatures larger than you.",
+      "People Sense: You have proficiency in Insight."
+    ],
+    skills: ["Insight"],
+    langs: "Common and Lilliput",
+    subraces: {
+      "(No Subrace)": { asi: {}, label: "(No Subrace)", traits: [] },
+      "Hearthput": {
+        asi: { cha: 1 },
+        label: "Hearthput (+1 CHA)",
+        traits: ["Warm Presence: You have proficiency in Persuasion."],
+        skills: ["Persuasion"]
+      }
+    }
+  },
+
+  "Elvian": {
+    asi: { int: 2 },
+    speed: 30,
+    darkvision: 60,
+    size: "Medium",
+    traits: [
+      "Darkvision: You can see in dim light within 60 ft as if it were bright light.",
+      "Chronicle Mind: You have proficiency in History.",
+      "Fey Ancestry: Advantage on saving throws against being charmed; magic can't put you to sleep."
+    ],
+    skills: ["History"],
+    langs: "Common, Elvish + 1 language of choice",
+    subraces: {
+      "(No Subrace)": { asi: {}, label: "(No Subrace)", traits: [] },
+      "Rune Elf": {
+        asi: { wis: 1 },
+        label: "Rune Elf (+1 WIS)",
+        traits: ["Arcane Notation: You have proficiency in Arcana."],
+        skills: ["Arcana"]
+      },
+      "Terran Elf": {
+        asi: { wis: 1 },
+        label: "Terran Elf (+1 WIS)",
+        traits: ["Natural Affinity: You have proficiency in Nature."],
+        skills: ["Nature"]
+      }
+    }
+  },
+
+  "Orcan": {
+    asi: { str: 2 },
+    speed: 30,
+    swim: 20,
+    size: "Medium",
+    traits: [
+      "Killer Endurance: When reduced to 0 HP, you drop to 1 HP instead. Once per long rest.",
+      "Water Adaptation: You can hold your breath for up to 15 minutes."
+    ],
+    langs: "Common and Orcan",
+    subraces: {
+      "(No Subrace)": { asi: {}, label: "(No Subrace)", traits: [] },
+      "Whitecan": {
+        asi: { dex: 1 },
+        label: "Whitecan (+1 DEX)",
+        traits: ["Fearless Instinct: You have advantage on saving throws against being frightened."]
+      },
+      "Ironcan": {
+        asi: { dex: 1 },
+        label: "Ironcan (+1 DEX)",
+        traits: [
+          "Apex Focus: When damaged by a creature, you gain advantage on Insight checks against that creature until end of your next turn."
+        ]
+      }
+    }
+  },
+
+  "Chronar": {
+    asi: { int: 2, dex: 1 },
+    speed: 30,
+    size: "Medium",
+    traits: [
+      "Mechanist's Insight: You gain proficiency with Tinker’s Tools and one artisan’s tool of choice.",
+      "System Sense: You gain proficiency in Intelligence (Investigation) checks made to understand mechanical devices."
+    ],
+    langs: "Common and Chronarsian",
+    subraces: {
+      "(No Subrace)": { asi: {}, label: "(No Subrace)", traits: [] }
+    }
+  }
 };
 
 // ══════════════════════════════════════════════════════════
