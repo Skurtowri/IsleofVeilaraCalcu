@@ -715,15 +715,24 @@ function switchTab(name){
   if(name==='spellbook') initSpellbook();
 }
 
+// 
 // ══════════════════════════════════════════════════════════
-//  RACE COLORS
+//  RACE COLORS & PORTRAITS
 // ══════════════════════════════════════════════════════════
 const RACE_COLORS={
-  "Humanian":"#2a7ab8","Etharian":"#c06030","Dwarken":"#7a5230","Scallion":"#2a7d32",
+  "Humanian":"#2a7ab8","Etharian":"#c06030","Dwarken":"#7a5230","Scallion":"#3e924b",
   "Falenian":"#1560c0","Hadroan":"#4a2080","Tusker":"#a05510",
   "Smiloborn":"#9a2840","Glimmer":"#008a8f","Lilliput":"#528b2f",
   "Elvian":"#7b1fa2","Orcan":"#2e7d5a","Chronar":"#4a6080"
 };
+const RACE_PORTRAITS={
+  "Humanian":"humanian.jpg","Etharian":"etharians.jpg","Dwarken":"dwarkens.jpg",
+  "Scallion":"scallions.jpg","Falenian":"falenian.jpg","Hadroan":"hadroans.jpg",
+  "Tusker":"tuskers.jpg","Smiloborn":"smiloborns.jpg","Glimmer":"glimmers.jpg",
+  "Lilliput":"lilliputs.jpg","Elvian":"elvians.jpg","Orcan":"orcans.jpg",
+  "Chronar":"chronars.jpg"
+};
+
 function applyRaceColor(n){
   const c=RACE_COLORS[n]||'#c49a2e';
   document.documentElement.style.setProperty('--race-col',c);
